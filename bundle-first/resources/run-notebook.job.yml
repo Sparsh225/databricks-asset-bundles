@@ -1,0 +1,21 @@
+resources:
+  jobs:
+    run_notebook:
+      name: run-notebook
+      queue:
+        enabled: true
+
+      tasks:
+        - task_key: notebook_task
+          notebook_task:
+            notebook_path: /Workspace/Users/sparshrawat34@gmail.com/databricks-asset-bundles/bundle-first/hello
+  
+      email_notifications:
+        no_alert_for_skipped_runs: true
+        on_failure:
+          - sparshrawat34@gmail.com
+      # trigger:
+      #   # Run this job every day, exactly one day from the last run; see https://docs.databricks.com/api/workspace/jobs/create#trigger
+      #   periodic:
+      #     interval: 1
+      #     unit: DAYS
