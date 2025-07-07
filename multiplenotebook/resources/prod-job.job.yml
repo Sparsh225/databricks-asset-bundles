@@ -1,0 +1,27 @@
+resources:
+  jobs:
+    prod_job:
+      name: prod-job
+      queue:
+        enabled: true
+
+      tasks:
+        - task_key: notebook_task_1
+          notebook_task:
+            notebook_path: ./DQ.ipynb 
+
+        - task_key: notebook_task_2
+          depends_on:
+            - task_key: notebook_task_1
+          notebook_task:
+            notebook_path: ./hello.ipynb 
+
+      email_notifications:
+        no_alert_for_skipped_runs: true
+        on_failure:
+          - sparshrawat34@gmail.com
+
+      trigger:
+        periodic:
+          interval: 1
+          unit: DAYS
